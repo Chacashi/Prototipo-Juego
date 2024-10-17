@@ -10,10 +10,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float Speed;
     [SerializeField] private float YMax;
     [SerializeField] private float YMin;
+    [SerializeField] private float Xmin;
+    [SerializeField] private float Xmax;
     [SerializeField] private float life;
     [SerializeField] private int maxLife;
     [SerializeField] private GameManagerController lifeBar;
     private float current;
+    private float currentX;
     public static Action<float> eventLife;
     private void ActiveEventLife()
     {
@@ -37,7 +40,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         current=math.clamp(transform.position.y, YMin, YMax);
-        transform.position = new Vector2(transform.position.x, current);
+        currentX = math.clamp(transform.position.x, Xmin, Xmax);
+        transform.position = new Vector2(currentX, current);
     }
     public void YDirection(InputAction.CallbackContext context)
     {
@@ -51,7 +55,6 @@ public class PlayerController : MonoBehaviour
     {
         RB2D.velocity = new Vector2(xdirection* Speed, ydirection * Speed);
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision != null && collision.gameObject.tag =="Enemy")
