@@ -1,7 +1,7 @@
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D RB2D;
@@ -10,10 +10,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float Speed;
     [SerializeField] private float YMax;
     [SerializeField] private float YMin;
-    [SerializeField] private int life;
+    [SerializeField] private float life;
     [SerializeField] private int maxLife;
     [SerializeField] private GameManagerController lifeBar;
     private float current;
+    public static Action<float> eventLife;
+    private void ActiveEventLife()
+    {
+        eventLife.Invoke(life);
+    }
     private void Awake()
     {
         RB2D = GetComponent<Rigidbody2D>();
@@ -21,16 +26,14 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        life = maxLife;
-        lifeBar.SetLifeBar(life);
+        ActiveEventLife();
     }
     public void DecrementLife(int damage)
     {
         life -= damage;
-        lifeBar.ChangueCurrentLife(life);
+        ActiveEventLife();
         
     }
-
     private void Update()
     {
         current=math.clamp(transform.position.y, YMin, YMax);

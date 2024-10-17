@@ -269,7 +269,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0.05
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -555,7 +555,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLife: 10
   currentLife: 10
-  _compSlider: {fileID: 731247271}
   _compEnemyController: {fileID: 8416347780311929511, guid: df6e6ccbb910e964e9be8dde8717f317, type: 3}
 --- !u!1 &497790627
 GameObject:
@@ -859,6 +858,7 @@ GameObject:
   m_Component:
   - component: {fileID: 731247272}
   - component: {fileID: 731247271}
+  - component: {fileID: 731247273}
   m_Layer: 5
   m_Name: BarradeVida
   m_TagString: Untagged
@@ -911,9 +911,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 10
+  m_MaxValue: 20
   m_WholeNumbers: 0
-  m_Value: 10
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -938,6 +938,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 422.73, y: 82.78}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &731247273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731247270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8146bb7bffc2bc44ea669eb411d355cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &807618235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,8 +1031,8 @@ MonoBehaviour:
   Speed: 5
   YMax: 2.7
   YMin: -3.5
-  life: 10
-  maxLife: 10
+  life: 20
+  maxLife: 20
   lifeBar: {fileID: 372448869}
 --- !u!212 &1336929836
 SpriteRenderer:
