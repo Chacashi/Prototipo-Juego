@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D RB2D;
-    private float Y;
-    private float X;
+    private float xdirection;
+    private float ydirection;
     [SerializeField] private float Speed;
     [SerializeField] private float YMax;
     [SerializeField] private float YMin;
@@ -20,11 +18,17 @@ public class PlayerController : MonoBehaviour
     {
         current=math.clamp(transform.position.y, YMin, YMax);
         transform.position = new Vector2(transform.position.x, current);
-        X = Input.GetAxis("Horizontal");
-        Y = Input.GetAxis("Vertical");
+    }
+    public void YDirection(InputAction.CallbackContext context)
+    {
+        ydirection = context.ReadValue<float>();
+    }
+    public void XDirection(InputAction.CallbackContext context)
+    {
+        xdirection = context.ReadValue<float>();
     }
     private void FixedUpdate()
     {
-        RB2D.velocity = new Vector2(X * Speed, Y * Speed);
+        RB2D.velocity = new Vector2(xdirection* Speed, ydirection * Speed);
     }
 }
