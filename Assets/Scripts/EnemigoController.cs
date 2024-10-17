@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemigoController : MonoBehaviour
 {
     Rigidbody2D r;
-    public float speed;
+    [SerializeField] private float speed;
+    [SerializeField] private int damage;
     private void Awake()
     {
         r = GetComponent<Rigidbody2D>();
@@ -13,6 +14,11 @@ public class EnemigoController : MonoBehaviour
     private void FixedUpdate()
     {
         r.velocity = new Vector2(-speed, r.velocity.y);
+    }
+
+    public int GetDamage()
+    {
+        return damage;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

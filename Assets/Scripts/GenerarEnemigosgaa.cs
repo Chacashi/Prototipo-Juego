@@ -8,6 +8,7 @@ public class GenerarEnemigosgaa : MonoBehaviour
     [SerializeField] private GameObject prefab;
     public float velocidad;
     public float final;
+
     private void Update()
     {
 
