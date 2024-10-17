@@ -1530,6 +1530,7 @@ GameObject:
   - component: {fileID: 714126787}
   - component: {fileID: 714126786}
   - component: {fileID: 714126785}
+  - component: {fileID: 714126788}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -1639,6 +1640,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714126783}
   m_CullTransparentMesh: 1
+--- !u!114 &714126788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714126783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aedbef8e3f6a9bc409296ed02dfe8df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &729691554
 GameObject:
   m_ObjectHideFlags: 0
@@ -3168,8 +3181,8 @@ RectTransform:
   m_Children:
   - {fileID: 807335659}
   - {fileID: 252330453}
-  - {fileID: 714126784}
   - {fileID: 1837864054}
+  - {fileID: 714126784}
   - {fileID: 1425769890}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3535,6 +3548,7 @@ GameObject:
   - component: {fileID: 1837864057}
   - component: {fileID: 1837864056}
   - component: {fileID: 1837864055}
+  - component: {fileID: 1837864058}
   m_Layer: 5
   m_Name: Button (4)
   m_TagString: Untagged
@@ -3644,6 +3658,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1837864053}
   m_CullTransparentMesh: 1
+--- !u!114 &1837864058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837864053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b2339e02182fb942bd5264990517167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Close: {fileID: 0}
+  Open: {fileID: 0}
 --- !u!1 &1917690671
 GameObject:
   m_ObjectHideFlags: 0
