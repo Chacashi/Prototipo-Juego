@@ -15,8 +15,9 @@ public class GenerarEnemigosgaa : MonoBehaviour
         velocidad += Time.deltaTime;
         if(velocidad>=final)
         {
-            Vector2 newPosition = new Vector2(this.transform.position.x, Random.Range(-3.5f, 2.7f));
-            Instantiate(prefab,newPosition,transform.rotation);
+            Vector2 newPosition = new Vector2(this.transform.position.x, Random.Range(-3.5f, -0.62f));
+            GameObject newEnemy = Instantiate(prefab, newPosition, transform.rotation);
+            newEnemy.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
             velocidad = 0;
         }
     }
