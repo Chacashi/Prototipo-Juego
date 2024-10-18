@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c72b9c32a375254fa13200efa8b833b, type: 3}
   m_Name: AudioClipSO
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
-  mixerSO: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 22004e389ffd01a4fb3e37f8e849f2c6, type: 3}
+  mixerSO: {fileID: 11400000, guid: f6edb31d69166394eb7bed07e3313476, type: 2}
   volume: 1
   pitch: 1
