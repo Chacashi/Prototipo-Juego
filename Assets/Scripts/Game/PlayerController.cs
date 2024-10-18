@@ -146,10 +146,14 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag=="Enemy")
+        if (collision.gameObject.tag=="Enemy" || collision.gameObject.tag == "bala")
         {
             DecrementLife();
             Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag=="jefe")
+        {
+            //ganar
         }
     }
 }

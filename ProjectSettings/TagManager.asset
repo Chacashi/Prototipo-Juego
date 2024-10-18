@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - Enemy
+  - jefe
+  - bala
   layers:
   - Default
   - TransparentFX
