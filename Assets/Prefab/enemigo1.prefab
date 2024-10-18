@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 404408288391638402}
   m_Layer: 0
   m_Name: enemigo1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  maxHealth: 0
   damage: 1
 --- !u!50 &-1614850587467424268
 Rigidbody2D:

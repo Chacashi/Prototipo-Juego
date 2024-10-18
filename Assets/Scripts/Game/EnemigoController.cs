@@ -9,13 +9,18 @@ public class EnemigoController : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private int damage;
     private int currentHealth;
-
     private void Awake()
     {
         r = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
     }
-
+    private void Update()
+    {
+        if (transform.position.x <= -10)
+        {
+            Destroy(this.gameObject);
+        }
+    }
     private void FixedUpdate()
     {
         r.velocity = new Vector2(-speed, r.velocity.y);

@@ -20,13 +20,13 @@ public class PlayerController : MonoBehaviour
 
     private float current;
     private float currentX;
-    public static System.Action<float> eventLife;
+    public static Action<float> eventLife;
 
     private Animator animator;
 
-    [SerializeField] private float dashSpeed = 10f;
-    [SerializeField] private float dashDuration = 0.2f;
-    [SerializeField] private float dashCooldown = 1f;
+    private float dashSpeed = 10f;
+    private float dashDuration = 0.2f;
+    private float dashCooldown = 1f;
     private bool isDashing = false;
     private bool canDash = true;
     private float dashTime;
@@ -39,24 +39,20 @@ public class PlayerController : MonoBehaviour
     {
         eventLife.Invoke(life);
     }
-
     private void Awake()
     {
         RB2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
-
     private void Start()
     {
         ActiveEventLife();
     }
-
-    public void DecrementLife(int damage)
+    public void DecrementLife()
     {
         life -= damage;
         ActiveEventLife();
     }
-
     private void Update()
     {
         current = Mathf.Clamp(transform.position.y, YMin, YMax);
@@ -78,17 +74,14 @@ public class PlayerController : MonoBehaviour
         }
         transform.localScale = characterScale;
     }
-
     public void YDirection(InputAction.CallbackContext context)
     {
         ydirection = context.ReadValue<float>();
     }
-
     public void XDirection(InputAction.CallbackContext context)
     {
         xdirection = context.ReadValue<float>();
     }
-
     public void OnDash(InputAction.CallbackContext context)
     {
         if (context.performed && canDash && (xdirection != 0 || ydirection != 0))
@@ -96,7 +89,6 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Dash());
         }
     }
-
     private IEnumerator Dash()
     {
         isDashing = true;
@@ -116,7 +108,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
-
     private void FixedUpdate()
     {
         if (!isDashing)
@@ -124,7 +115,6 @@ public class PlayerController : MonoBehaviour
             RB2D.velocity = new Vector2(xdirection * Speed, ydirection * Speed);
         }
     }
-
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -139,7 +129,7 @@ public class PlayerController : MonoBehaviour
         isAttacking = true;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange);
 
-        foreach (Collider2D enemy in hitEnemies) //FOREACH DEIDAD
+        foreach (Collider2D enemy in hitEnemies) 
         {
             if (enemy.CompareTag("Enemy"))
             {
@@ -149,18 +139,16 @@ public class PlayerController : MonoBehaviour
 
         StartCoroutine(ResetAttackState());
     }
-
     private IEnumerator ResetAttackState()
     {
         yield return new WaitForSeconds(0.5f); 
         isAttacking = false;
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && !isAttacking)
+        if (collision.gameObject.tag=="Enemy")
         {
-            DecrementLife(lifeBar.GetDamageEnemy());
+            DecrementLife();
             Destroy(collision.gameObject);
         }
     }
