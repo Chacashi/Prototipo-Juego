@@ -6,11 +6,16 @@ public class EnemigoController : MonoBehaviour
 {
     Rigidbody2D r;
     [SerializeField] private float speed;
+    [SerializeField] private int maxHealth;
     [SerializeField] private int damage;
+    private int currentHealth;
+
     private void Awake()
     {
         r = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
     }
+
     private void FixedUpdate()
     {
         r.velocity = new Vector2(-speed, r.velocity.y);
@@ -20,9 +25,12 @@ public class EnemigoController : MonoBehaviour
     {
         return damage;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    public void DecrementLife(int damage)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
         {
             Destroy(this.gameObject);
         }
