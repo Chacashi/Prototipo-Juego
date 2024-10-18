@@ -11,7 +11,6 @@ public class GameManagerController : MonoBehaviour
 
     public int GetDamageEnemy()
     {
-        
         return _compEnemyController.GetDamage();
     }
     private void OnEnable()
@@ -22,5 +21,4 @@ public class GameManagerController : MonoBehaviour
     {
         
     }
-
 }

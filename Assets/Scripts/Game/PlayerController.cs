@@ -3,12 +3,14 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
 using System;
+using UnityEngine.SceneManagement;
+using TMPro;
+
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D RB2D;
     private float xdirection;
     private float ydirection;
-
     [SerializeField] private float Speed;
     [SerializeField] private float YMax;
     [SerializeField] private float YMin;
@@ -17,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float life;
     [SerializeField] private int maxLife;
     [SerializeField] private GameManagerController lifeBar;
-
+    [SerializeField] private Textozz healthDisplay;
     private float current;
     private float currentX;
     public static Action<float> eventLife;
@@ -35,10 +37,6 @@ public class PlayerController : MonoBehaviour
     private bool isAttacking = false;
     [SerializeField] private int damage; 
 
-    private void ActiveEventLife()
-    {
-        eventLife.Invoke(life);
-    }
     private void Awake()
     {
         RB2D = GetComponent<Rigidbody2D>();
@@ -46,12 +44,17 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
-        ActiveEventLife();
+        life = maxLife;
+        healthDisplay.SetHealth((int)life);
     }
     public void DecrementLife()
     {
         life -= damage;
-        ActiveEventLife();
+        healthDisplay.SetHealth((int)life);
+        if (life <= 0)
+        {
+            SceneManager.LoadScene("Menu");
+        }      
     }
     private void Update()
     {
@@ -73,6 +76,11 @@ public class PlayerController : MonoBehaviour
             characterScale.x = Mathf.Abs(characterScale.x);
         }
         transform.localScale = characterScale;
+
+        if (life <= 0)
+        {
+            SceneManager.LoadScene("Menu"); 
+        }
     }
     public void YDirection(InputAction.CallbackContext context)
     {
@@ -124,8 +132,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Attack()
-    {
-        animator.SetTrigger("attack");
+    {      
+        animator.SetBool("attack", true);
         isAttacking = true;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange);
 
@@ -135,13 +143,17 @@ public class PlayerController : MonoBehaviour
             {
                 enemy.GetComponent<EnemigoController>().DecrementLife(damage); 
             }
+            else if (enemy.CompareTag("jefe"))
+            {
+                SceneManager.LoadScene("Victory");
+            }
         }
-
         StartCoroutine(ResetAttackState());
     }
     private IEnumerator ResetAttackState()
     {
-        yield return new WaitForSeconds(0.5f); 
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("attack",false);
         isAttacking = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -149,11 +161,25 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag=="Enemy" || collision.gameObject.tag == "bala")
         {
             DecrementLife();
+        }
+        else if (collision.gameObject.tag == "bala")
+        {
+            DecrementLife();
             Destroy(collision.gameObject);
         }
-        if (collision.gameObject.tag=="jefe")
+        else if (collision.gameObject.tag=="curar")
         {
-            //ganar
+            Heal(1);
+            Destroy(collision.gameObject);
         }
+    }
+    public void Heal(int amount)
+    {
+        life += amount;  
+        if (life > maxLife) 
+        {
+            life = maxLife;
+        }
+        healthDisplay.SetHealth((int)life);
     }
 }

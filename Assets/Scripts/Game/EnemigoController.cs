@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemigoController : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class EnemigoController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Destroy(this.gameObject);
+            SceneManager.LoadScene("Menu");
         }
     }
 }

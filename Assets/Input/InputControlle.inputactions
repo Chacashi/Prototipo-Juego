@@ -43,7 +43,7 @@
                 },
                 {
                     "name": "Atack",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "2cee0d72-d978-4a76-a910-31e91de7cd70",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -176,7 +176,7 @@
                 {
                     "name": "",
                     "id": "81bc8aaa-37a2-4380-869b-f2e010ea761f",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

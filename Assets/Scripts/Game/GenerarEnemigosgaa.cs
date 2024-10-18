@@ -11,7 +11,6 @@ public class GenerarEnemigosgaa : MonoBehaviour
 
     private void Update()
     {
-
         velocidad += Time.deltaTime;
         if(velocidad>=final)
         {

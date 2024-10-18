@@ -2,11 +2,14 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SliderController : MonoBehaviour
 {
-    Slider slider;
+    public Slider slider;
+    private float life;
     private void Awake()
     {
         slider = GetComponent<Slider>();
+        slider.value = life;
     }
+    
     public void MostrarVida(float life)
     {
         slider.value= life ;
